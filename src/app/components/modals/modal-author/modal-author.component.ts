@@ -15,14 +15,16 @@ export class ModalAuthorComponent implements OnInit {
   authors!: Array<AuthorModel>;
   form: FormGroup
   editableId: number = -1;
+  isCreating: boolean = false;
 
   constructor(private authorService: AuthorService,
               private destroy$: DestroyService,
               private cdr: ChangeDetectorRef,
               private fb: FormBuilder) {
     this.form = fb.group({
-      'search': [''],
-      'changedAuthor': ['']
+      search: [''],
+      changedAuthor: [''],
+      newAuthor: ['']
     })
   }
 
@@ -33,7 +35,6 @@ export class ModalAuthorComponent implements OnInit {
         startWith(''),
         debounceTime(300),
         tap(() => {
-          console.log('tapped')
           this.editableId = -1
         }),
         switchMap(value => this.authorService.searchAuthors(value)))
@@ -61,6 +62,19 @@ export class ModalAuthorComponent implements OnInit {
   removeAuthor(event: Event, id: number) {
     event.stopPropagation();
     this.authorService.removeAuthor(id);
+  }
+
+  openCreateForm() {
+    this.isCreating = true;
+  }
+
+  closeCreateForm() {
+    this.isCreating = false;
+  }
+
+  addNewAuthor() {
+    this.authorService.addAuthor({id: this.authors.length + 1, name: this.form.getRawValue().newAuthor});
+    this.closeCreateForm();
   }
 
 }

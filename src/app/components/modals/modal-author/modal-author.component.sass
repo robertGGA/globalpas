@@ -28,6 +28,7 @@
 
 .authors
 
+
   &__container
     margin-top: 10px
     display: flex
@@ -35,16 +36,7 @@
     width: 100%
 
   &__element
-    display: flex
-    align-items: center
-    justify-content: space-between
-    width: 100%
-    margin-top: 3px
-    padding: 6px 8px
-    background: none
-    border: 1px solid $c-border
-    border-radius: 8px
-
+    @extend .item
 
     &-active
       background-color: $c-dark-b
@@ -70,5 +62,20 @@
     &:hover
       background-color: $c-dark-b
       color: white
+
+.item
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  margin-top: 3px
+  padding: 6px 8px
+  background: none
+  border: 1px solid $c-border
+  border-radius: 8px
+
+  button
+    border: none
+    background: none
 
 

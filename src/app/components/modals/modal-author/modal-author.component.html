@@ -2,11 +2,21 @@
 <gp-modal-body class="dialog" [formGroup]="form">
   <div class="dialog__first-row">
     <input formControlName="search" placeholder="Поиск автора" class="search"/>
-    <button>
+    <button (click)="openCreateForm()">
       Добавить автора
     </button>
   </div>
   <div class="authors__container">
+    <div *ngIf="isCreating" class="item">
+      <input class="authors__element-input" placeholder="Добавить автора" formControlName="newAuthor"/>
+      <button>
+        <mat-icon (click)="addNewAuthor()">check_circle_outline</mat-icon>
+      </button>
+
+      <button (click)="closeCreateForm()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <div [ngClass]="editableId === author.id ? 'authors__element-active' : ''" class="authors__element"
          (click)="chooseAuthor(author.id)" *ngFor="let author of authors">
       <span *ngIf="editableId !== author.id; else inputForm">
