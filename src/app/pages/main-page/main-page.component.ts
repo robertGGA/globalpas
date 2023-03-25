@@ -5,6 +5,7 @@ import {BookModel} from "@models/book-model";
 import {DestroyService} from "@services/destroy.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
+import {ModalCreateBookComponent} from "@components/modals/modal-create-book/modal-create-book.component";
 import {ModalAuthorComponent} from "@components/modals/modal-author/modal-author.component";
 
 @Component({
@@ -34,7 +35,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.books$ = this.form.valueChanges
       .pipe(takeUntil(this.destroy$),
         startWith(this.form.getRawValue),
@@ -61,8 +61,8 @@ export class MainPageComponent implements OnInit {
     this.dialog.open(ModalAuthorComponent)
   }
 
-  openFilmModal() {
-
+  openBookModal() {
+    this.dialog.open(ModalCreateBookComponent);
   }
 
 }

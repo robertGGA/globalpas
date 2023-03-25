@@ -3,7 +3,6 @@ export type BookModel = {
   name: string,
   genre: string,
   author: string,
-  year: number,
   lang: string,
   description: string,
   pageCount: number

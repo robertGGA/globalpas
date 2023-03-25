@@ -1,0 +1,43 @@
+<gp-modal-header title="Добавление книги"></gp-modal-header>
+<gp-modal-body class="modal__body" [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Название</mat-label>
+    <input formControlName="name" matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Автор</mat-label>
+    <mat-select formControlName="author">
+      <mat-option *ngFor="let topping of toppings" [value]="topping">{{topping}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Описание</mat-label>
+    <input formControlName="name" matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Язык</mat-label>
+    <mat-select formControlName="lang">
+      <mat-option *ngFor="let lang of langs" [value]="lang">{{lang}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Число страниц</mat-label>
+    <input type="number" formControlName="pageCount" matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Жанр</mat-label>
+    <mat-select formControlName="genre">
+      <mat-option *ngFor="let genre of genres" [value]="genre">
+        {{genre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="submit()">
+    Сохранить
+  </button>
+</gp-modal-body>

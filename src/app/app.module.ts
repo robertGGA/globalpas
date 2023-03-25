@@ -14,12 +14,13 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSliderModule} from "@angular/material/slider";
-import { DoubleSliderComponent } from '@components/ui/double-slider/double-slider.component';
-import { PageComponent } from '@components/ui/page/page.component';
-import { ModalBodyComponent } from '@components/modals/modal-body/modal-body.component';
-import { ModalBookComponent } from '@components/modals/modal-book/modal-book.component';
+import {DoubleSliderComponent} from '@components/ui/double-slider/double-slider.component';
+import {PageComponent} from '@components/ui/page/page.component';
+import {ModalBodyComponent} from '@components/modals/modal-body/modal-body.component';
+import {ModalBookComponent} from '@components/modals/modal-book/modal-book.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { ModalHeaderComponent } from '@components/modals/modal-header/modal-header.component';
+import {ModalHeaderComponent} from '@components/modals/modal-header/modal-header.component';
+import {ModalCreateBookComponent} from '@components/modals/modal-create-book/modal-create-book.component';
 import { ModalAuthorComponent } from '@components/modals/modal-author/modal-author.component';
 
 @NgModule({
@@ -33,7 +34,9 @@ import { ModalAuthorComponent } from '@components/modals/modal-author/modal-auth
     ModalBodyComponent,
     ModalBookComponent,
     ModalHeaderComponent,
-    ModalAuthorComponent
+    ModalCreateBookComponent,
+    ModalCreateBookComponent,
+    ModalAuthorComponent,
   ],
   imports: [
     BrowserModule,
