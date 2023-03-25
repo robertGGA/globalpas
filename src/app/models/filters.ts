@@ -6,3 +6,11 @@ export interface IFilters {
   description: string,
   pageCount: number
 }
+
+export interface IGenre {
+  genre: string
+}
+
+export interface ILang {
+  lang: string
+}

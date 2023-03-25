@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {BookService} from "@services/book.service";
 import {map, Observable, startWith, switchMap, takeUntil} from "rxjs";
 import {BookModel} from "@models/book-model";
@@ -7,6 +7,9 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalCreateBookComponent} from "@components/modals/modal-create-book/modal-create-book.component";
 import {ModalAuthorComponent} from "@components/modals/modal-author/modal-author.component";
+import {AuthorService} from "@services/author.service";
+import {AuthorModel} from "@models/author-model";
+import {IGenre, ILang} from "@models/filters";
 
 @Component({
   selector: 'gp-main-page',
@@ -18,20 +21,24 @@ export class MainPageComponent implements OnInit {
 
   books$!: Observable<Array<BookModel>>;
   form: FormGroup
-  toppings = ['Няшкин', 'Пуськин'];
-  langs = ['English', 'Русский', 'Chinese']
-  genres = ['Очистить', 'Детектив', 'Роман', 'Фантастика', 'Еще что-то', 'И еще что-то']
+  authors!: Array<AuthorModel>;
+  langs!: Array<ILang>
+  genres!: Array<IGenre>
 
   constructor(private bookService: BookService,
+              private authorService: AuthorService,
               private destroy$: DestroyService,
               private fb: FormBuilder,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private cdr: ChangeDetectorRef) {
     this.form = fb.group({
       "name": [""],
       "author": [[]],
       "lang": [[]],
       "genre": [""],
     });
+
+    this.initForms();
   }
 
   ngOnInit(): void {
@@ -55,6 +62,24 @@ export class MainPageComponent implements OnInit {
         }),
         switchMap(inputs => this.bookService.getFilteredBooks(inputs))
       );
+
+    this.authorService.getAuthors().pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.authors = value;
+      this.cdr.markForCheck();
+    })
+  }
+
+  private initForms() {
+    this.authorService.getGenres().pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.genres = value;
+      this.genres.unshift({"genre": 'Очистить'});
+      this.cdr.markForCheck();
+    })
+
+    this.authorService.getLangs().pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.langs = value;
+      this.cdr.markForCheck();
+    })
   }
 
   openAuthorModal() {

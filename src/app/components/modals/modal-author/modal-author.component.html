@@ -1,11 +1,24 @@
 <gp-modal-header title="Редактировать авторов"></gp-modal-header>
 <gp-modal-body class="dialog" [formGroup]="form">
-  <input formControlName="search" placeholder="Поиск автора" class="search"/>
+  <div class="dialog__first-row">
+    <input formControlName="search" placeholder="Поиск автора" class="search"/>
+    <button>
+      Добавить автора
+    </button>
+  </div>
   <div class="authors__container">
-    <div class="authors__element" (click)="chooseAuthor(author.id)" *ngFor="let author of authors">
-      <span>
+    <div [ngClass]="editableId === author.id ? 'authors__element-active' : ''" class="authors__element"
+         (click)="chooseAuthor(author.id)" *ngFor="let author of authors">
+      <span *ngIf="editableId !== author.id; else inputForm">
         {{author.name}}
       </span>
+
+      <ng-template #inputForm>
+        <input class="authors__element-input" placeholder="Изменить автора" formControlName="changedAuthor"/>
+        <button class="authors__element-submit" (click)="submitAuthor($event, author.id)">
+          <mat-icon>check_circle_outline</mat-icon>
+        </button>
+      </ng-template>
 
       <button (click)="removeAuthor($event, author.id)">
         <mat-icon>close</mat-icon>

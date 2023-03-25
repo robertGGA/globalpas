@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthorService} from "@services/author.service";
 import {AuthorModel} from "@models/author-model";
 import {DestroyService} from "@services/destroy.service";
-import {debounceTime, startWith, switchMap, takeUntil} from "rxjs";
+import {debounceTime, startWith, switchMap, takeUntil, tap} from "rxjs";
 
 @Component({
   selector: 'gp-modal-author',
@@ -14,23 +14,29 @@ import {debounceTime, startWith, switchMap, takeUntil} from "rxjs";
 export class ModalAuthorComponent implements OnInit {
   authors!: Array<AuthorModel>;
   form: FormGroup
+  editableId: number = -1;
 
   constructor(private authorService: AuthorService,
               private destroy$: DestroyService,
               private cdr: ChangeDetectorRef,
               private fb: FormBuilder) {
     this.form = fb.group({
-      'search': ['']
+      'search': [''],
+      'changedAuthor': ['']
     })
   }
 
   ngOnInit(): void {
-    this.form.valueChanges
+    this.form.get('search')?.valueChanges
       .pipe(
         takeUntil(this.destroy$),
-        startWith({search: ''}),
+        startWith(''),
         debounceTime(300),
-        switchMap(value => this.authorService.searchAuthors(value.search)))
+        tap(() => {
+          console.log('tapped')
+          this.editableId = -1
+        }),
+        switchMap(value => this.authorService.searchAuthors(value)))
       .subscribe(value => {
         this.authors = value;
         this.cdr.markForCheck();
@@ -38,7 +44,18 @@ export class ModalAuthorComponent implements OnInit {
   }
 
   chooseAuthor(id: number) {
-    console.log(id);
+    this.editableId = id;
+  }
+
+  submitAuthor(event: Event, id: number) {
+    event.stopPropagation();
+    this.authorService.changeAuthor(id, this.form.getRawValue().changedAuthor);
+    this.form.reset({
+      ...this.form.getRawValue(),
+      changedAuthor: ''
+    });
+
+    this.editableId = -1;
   }
 
   removeAuthor(event: Event, id: number) {

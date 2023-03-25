@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {AuthorModel} from "@models/author-model";
+import {IGenre, ILang} from "@models/filters";
 
 @Injectable({
   providedIn: 'root'
@@ -9,51 +10,55 @@ export class AuthorService {
   data = [
     {
       "id": 0,
-      "name": "Marshall"
+      "name": "Белый"
     },
     {
       "id": 1,
-      "name": "Stark"
+      "name": "Достоевский"
     },
     {
       "id": 2,
-      "name": "Cannon"
+      "name": "Пушкин"
     },
     {
-      "id": 3, "name": "Mcintosh"
+      "id": 3,
+      "name": "Тургенев"
     },
     {
       "id": 4,
-      "name": "Randolph"
+      "name": "Толстой"
     },
     {
-      "id": 5, "name": "Obrien"
+      "id": 5,
+      "name": "Булгаков"
     },
     {
       "id": 6,
-      "name": "Little"
+      "name": "Чехов"
     },
     {
       "id": 7,
-      "name": "Charles"
+      "name": "Гоголь"
     },
     {
       "id": 8,
-      "name": "Hanson"
+      "name": "Есенин"
     },
     {
       "id": 9,
-      "name": "Wade"
+      "name": "Горький"
     },
     {
       "id": 10,
-      "name": "Raymond"
+      "name": "Ремарк"
     },
     {
-      "id": 11, "name": "Molina"
+      "id": 11,
+      "name": "Molina"
     },
     {
-      "id": 12, "name": "Malone"
+      "id": 12,
+      "name": "Malone"
     }
   ]
   private authors$: BehaviorSubject<Array<AuthorModel>> = new BehaviorSubject<Array<AuthorModel>>(this.data);
@@ -91,7 +96,70 @@ export class AuthorService {
       }
       return item;
     }));
+  }
 
+  getGenres(): Observable<Array<IGenre>> {
+    return of([
+      {
+        "genre": "Фантастика"
+      },
+      {
+        "genre": "Детектив"
+      },
+      {
+        "genre": "Приключения"
+      },
+      {
+        "genre": "Фэнтези"
+      },
+      {
+        "genre": "Роман"
+      },
+      {
+        "genre": "Классика"
+      },
+      {
+        "genre": "Научная литература"
+      },
+      {
+        "genre": "Исторический роман"
+      },
+      {
+        "genre": "Юмористический роман"
+      },
+      {
+        "genre": "Триллер"
+      }
+    ]);
+  }
+
+  getLangs(): Observable<Array<ILang>> {
+    return of([
+      {
+        "lang": "Английский"
+      },
+      {
+        "lang": "Испанский"
+      },
+      {
+        "lang": "Французский"
+      },
+      {
+        "lang": "Немецкий"
+      },
+      {
+        "lang": "Итальянский"
+      },
+      {
+        "lang": "Китайский"
+      },
+      {
+        "lang": "Японский"
+      },
+      {
+        "lang": "Русский"
+      }
+    ]);
   }
 
 }

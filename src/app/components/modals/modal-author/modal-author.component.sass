@@ -6,6 +6,21 @@
   flex-direction: column
   align-items: flex-start
 
+  &__first-row
+    display: flex
+    width: 100%
+    justify-content: space-between
+
+    button
+      padding: 2px 4px
+      border: 1px solid $c-border
+      background: none
+      border-radius: 6px
+
+      &:hover
+        background-color: $c-dark-b
+        color: white
+
 .search
   padding: 6px 10px
   border: 1px solid $c-border
@@ -30,6 +45,20 @@
     border: 1px solid $c-border
     border-radius: 8px
 
+
+    &-active
+      background-color: $c-dark-b
+      color: white
+
+    &-submit
+      &:hover
+        color: white
+
+    &-input
+      padding: 3px 5px
+      border: none
+      border-radius: 6px
+
     button
       display: flex
       background: none
@@ -41,4 +70,5 @@
     &:hover
       background-color: $c-dark-b
       color: white
+
 

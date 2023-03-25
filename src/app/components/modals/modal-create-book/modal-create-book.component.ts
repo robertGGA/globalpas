@@ -1,8 +1,13 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BookService} from "@services/book.service";
 import {BookModel} from "@models/book-model";
 import {MatDialogRef} from "@angular/material/dialog";
+import {Observable, takeUntil} from "rxjs";
+import {AuthorService} from "@services/author.service";
+import {IGenre, ILang} from "@models/filters";
+import {AuthorModel} from "@models/author-model";
+import {DestroyService} from "@services/destroy.service";
 
 @Component({
   selector: 'gp-modal-create-book',
@@ -12,12 +17,15 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class ModalCreateBookComponent {
   form: FormGroup
-  toppings = ['Няшкин', 'Пуськин'];
-  langs = ['English', 'Русский', 'Chinese']
-  genres = ['Очистить', 'Детектив', 'Роман', 'Фантастика', 'Еще что-то', 'И еще что-то']
+  authors$!: Observable<Array<AuthorModel>>
+  langs!: Array<ILang>;
+  genres!: Array<IGenre>;
 
   constructor(private fb: FormBuilder,
               private bookService: BookService,
+              private authorService: AuthorService,
+              private cdr: ChangeDetectorRef,
+              private destroy$: DestroyService,
               private dialogRef: MatDialogRef<ModalCreateBookComponent>) {
     this.form = fb.group({
       'name': ['', Validators.required],
@@ -27,6 +35,9 @@ export class ModalCreateBookComponent {
       'pageCount': [0, Validators.required],
       'lang': ['', Validators.required],
     });
+    this.authors$ =  this.authorService.getAuthors();
+
+    this.initForms();
   }
 
   submit() {
@@ -36,6 +47,18 @@ export class ModalCreateBookComponent {
       } else {
         alert('Произошла ошибка');
       }
+    })
+  }
+
+  private initForms() {
+    this.authorService.getGenres().pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.genres = value;
+      this.cdr.markForCheck();
+    })
+
+    this.authorService.getLangs().pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.langs = value;
+      this.cdr.markForCheck();
     })
   }
 

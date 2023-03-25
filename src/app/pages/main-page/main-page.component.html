@@ -9,22 +9,22 @@
       <mat-form-field appearance="fill">
         <mat-label>Авторы</mat-label>
         <mat-select formControlName="author" multiple>
-          <mat-option *ngFor="let topping of toppings" [value]="topping">{{topping}}</mat-option>
+          <mat-option *ngFor="let author of authors" [value]="author.name">{{author.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Язык</mat-label>
         <mat-select formControlName="lang" multiple>
-          <mat-option *ngFor="let lang of langs" [value]="lang">{{lang}}</mat-option>
+          <mat-option *ngFor="let lang of langs" [value]="lang.lang">{{lang.lang}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Жанр</mat-label>
         <mat-select formControlName="genre">
-          <mat-option *ngFor="let genre of genres" [value]="genre">
-            {{genre}}
+          <mat-option *ngFor="let genre of genres" [value]="genre.genre">
+            {{genre.genre}}
           </mat-option>
         </mat-select>
       </mat-form-field>
