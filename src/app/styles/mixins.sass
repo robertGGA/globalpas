@@ -6,6 +6,27 @@ $c-dark-b: #454566
 $c-light: #AFAFB3
 $c-border: #414144
 
-@mixin for-table-700
+@mixin for-phone
+  @media (max-width: 400px)
+    @content
+
+
+@mixin for-tablet
   @media (max-width: 700px)
     @content
+
+@mixin h1
+  font-weight: 600
+  font-size: 24px
+
+@mixin h2
+  font-weight: 600
+  font-size: 18px
+
+@mixin h4
+  font-size: 14px
+  font-weight: 600
+
+
+
+

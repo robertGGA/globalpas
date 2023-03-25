@@ -1,15 +1,47 @@
 <gp-page>
   <div class="page__container">
-    <gp-side-bar></gp-side-bar>
+    <gp-side-bar [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Поиск по названию</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Авторы</mat-label>
+        <mat-select formControlName="author" multiple>
+          <mat-option *ngFor="let topping of toppings" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Язык</mat-label>
+        <mat-select formControlName="lang" multiple>
+          <mat-option *ngFor="let lang of langs" [value]="lang">{{lang}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Жанр</mat-label>
+        <mat-select formControlName="genre">
+          <mat-option *ngFor="let genre of genres" [value]="genre">
+            {{genre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="button__container">
+        <button>
+          Добавить книгу
+        </button>
+        <button>
+          Добавить автора
+        </button>
+      </div>
+
+    </gp-side-bar>
 
     <div class="table">
-      <gp-card></gp-card>
-      <gp-card></gp-card>
-      <gp-card></gp-card>
-      <gp-card></gp-card>
-      <gp-card></gp-card>
-      <gp-card></gp-card>
-      <gp-card></gp-card>
+      <gp-card [book]="book" *ngFor="let book of (books$ | async)"></gp-card>
     </div>
   </div>
 </gp-page>

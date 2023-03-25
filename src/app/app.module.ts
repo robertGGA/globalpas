@@ -19,6 +19,8 @@ import { PageComponent } from '@components/ui/page/page.component';
 import { ModalBodyComponent } from '@components/modals/modal-body/modal-body.component';
 import { ModalBookComponent } from '@components/modals/modal-book/modal-book.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ModalHeaderComponent } from '@components/modals/modal-header/modal-header.component';
+import { ModalAuthorComponent } from '@components/modals/modal-author/modal-author.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     DoubleSliderComponent,
     PageComponent,
     ModalBodyComponent,
-    ModalBookComponent
+    ModalBookComponent,
+    ModalHeaderComponent,
+    ModalAuthorComponent
   ],
   imports: [
     BrowserModule,

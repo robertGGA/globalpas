@@ -1,0 +1,71 @@
+@import "src/app/styles/mixins"
+
+\:host
+  display: flex
+  flex-direction: column
+  min-width: 300px
+
+
+.modal
+
+  &__cover
+    width: 220px
+    height: 290px
+    background-color: gray
+    border-radius: 6px
+
+  &__wrapper
+    display: flex
+    align-items: flex-start
+    margin-top: 15px
+
+    @include for-tablet
+      flex-direction: column
+      align-items: center
+
+  &__info
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: space-between
+    margin-left: 15px
+    @include for-tablet
+      margin-top: 15px
+      word-break: break-word
+      margin-left: 0
+
+
+  &__title
+    @include h2
+
+
+.button
+  &__row
+    display: flex
+    flex-direction: row
+    align-items: center
+    align-self: flex-end
+    margin-top: 5px
+
+    button
+      font-weight: 400
+      font-size: 14px
+      letter-spacing: 0
+
+  &-cancel
+    color: #FF4081
+
+    .mdc-button__label
+      color: inherit
+
+
+.info
+  &-wrapper
+    display: flex
+    flex-direction: column
+    max-width: 300px
+    word-break: break-word
+
+    span
+      margin-top: 10px
+

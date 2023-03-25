@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ControlValueAccessor} from "@angular/forms";
 
 @Component({
   selector: 'gp-double-slider',
   templateUrl: './double-slider.component.html',
-  styleUrls: ['./double-slider.component.sass']
+  styleUrls: ['./double-slider.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DoubleSliderComponent implements ControlValueAccessor {
 

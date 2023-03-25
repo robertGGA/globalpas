@@ -1,29 +1,3 @@
-<aside [formGroup]="form" class="aside">
-  <mat-form-field appearance="fill">
-    <mat-label>Поиск по названию</mat-label>
-    <input formControlName="desc" matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Авторы</mat-label>
-    <mat-select formControlName="authors" multiple>
-      <mat-option *ngFor="let topping of toppings" [value]="topping">{{topping}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Язык</mat-label>
-    <mat-select formControlName="lang" multiple>
-      <mat-option *ngFor="let lang of langs" [value]="lang">{{lang}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Жанр</mat-label>
-    <mat-select formControlName="genre">
-      <mat-option *ngFor="let genre of genres" [value]="genre">
-        {{genre}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<aside class="aside">
+  <ng-content></ng-content>
 </aside>

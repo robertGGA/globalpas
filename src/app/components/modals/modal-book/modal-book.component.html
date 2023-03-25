@@ -1,1 +1,28 @@
-<p>modal-book works!</p>
+<gp-modal-header></gp-modal-header>
+<gp-modal-body>
+  <div class="modal__wrapper">
+    <div class="modal__cover"></div>
+    <div class="modal__info">
+      <div class="info-wrapper">
+        <h2 class="modal__title">
+          <b> Название: </b>{{data.book.name}}
+        </h2>
+        <span>
+          <b>Жанр</b>: {{data.book.genre}}
+        </span>
+        <span>
+         <b>Год выхода</b>: {{data.book.year}}
+        </span>
+        <span>
+         <b>Язык</b> : {{data.book.lang}}
+        </span>
+        <span>
+          <b>Количество страниц</b>: {{data.book.pageCount}}
+        </span>
+        <span>
+          <b>Описание </b>: {{data.book.description}}
+        </span>
+      </div>
+    </div>
+  </div>
+</gp-modal-body>

@@ -1,4 +1,8 @@
 @import "src/app/styles/mixins"
+side-bard
+  ::ng-deep .mat-form-field-flex
+    background-color: $c-light-g
+    border-radius: 0
 
 .page
 
@@ -12,3 +16,21 @@
   display: grid
   grid-template-columns: repeat(auto-fit, 200px)
   gap: 10px
+
+.button
+
+  &__container
+    display: flex
+    justify-content: space-between
+    margin-top: 25px
+
+    button
+      max-width: 47%
+      border-radius: 4px
+      border: none
+      padding: 6px 2px
+      transition: 0.3s
+
+      &:hover
+        color: white
+        background-color: $c-dark-b
