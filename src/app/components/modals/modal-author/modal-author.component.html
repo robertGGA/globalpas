@@ -1,3 +1,15 @@
-<gp-modal-body>
-  fsdfsdf
+<gp-modal-header title="Редактировать авторов"></gp-modal-header>
+<gp-modal-body class="dialog" [formGroup]="form">
+  <input formControlName="search" placeholder="Поиск автора" class="search"/>
+  <div class="authors__container">
+    <div class="authors__element" (click)="chooseAuthor(author.id)" *ngFor="let author of authors">
+      <span>
+        {{author.name}}
+      </span>
+
+      <button (click)="removeAuthor($event, author.id)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
 </gp-modal-body>
