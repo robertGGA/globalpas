@@ -28,14 +28,16 @@ export class ModalCreateBookComponent {
               private destroy$: DestroyService,
               private dialogRef: MatDialogRef<ModalCreateBookComponent>) {
     this.form = fb.group({
-      'name': ['', Validators.required],
-      'author': ['', Validators.required],
-      'description': ['', Validators.required],
-      'genre': ['', Validators.required],
-      'pageCount': [0, Validators.required],
-      'lang': ['', Validators.required],
+      name: ['', Validators.required],
+      author: ['', Validators.required],
+      description: [''],
+      genre: ['', Validators.required],
+      pageCount: [0, Validators.required],
+      lang: ['', Validators.required],
     });
     this.authors$ =  this.authorService.getAuthors();
+
+    // this.form.hasError()
 
     this.initForms();
   }

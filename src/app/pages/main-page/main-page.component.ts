@@ -3,7 +3,7 @@ import {BookService} from "@services/book.service";
 import {map, Observable, startWith, switchMap, takeUntil} from "rxjs";
 import {BookModel} from "@models/book-model";
 import {DestroyService} from "@services/destroy.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalCreateBookComponent} from "@components/modals/modal-create-book/modal-create-book.component";
 import {ModalAuthorComponent} from "@components/modals/modal-author/modal-author.component";
@@ -32,11 +32,15 @@ export class MainPageComponent implements OnInit {
               public dialog: MatDialog,
               private cdr: ChangeDetectorRef) {
     this.form = fb.group({
-      "name": [""],
-      "author": [[]],
-      "lang": [[]],
-      "genre": [""],
+      name: [""],
+      author: [[]],
+      lang: [[]],
+      genre: [""],
+      from: [0, [Validators.max(10000), Validators.min(0)]],
+      to: [10000]
     });
+
+    this.form.controls['to'].setValidators([Validators.max(10000), Validators.min(this.form.getRawValue().from)]);
 
     this.initForms();
   }

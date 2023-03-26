@@ -4,7 +4,9 @@ export interface IFilters {
   author: string[],
   lang: string[],
   description: string,
-  pageCount: number
+  pageCount: number,
+  from: number,
+  to: number
 }
 
 export interface IGenre {

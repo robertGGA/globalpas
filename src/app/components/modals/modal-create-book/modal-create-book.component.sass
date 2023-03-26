@@ -1,3 +1,5 @@
+@import "src/app/styles/mixins"
+
 \:host
   display: block
   max-width: 600px
@@ -7,3 +9,9 @@
 .modal__body
   display: flex
   flex-direction: column
+
+.button
+  &-submit
+    padding: 6px 2px
+    background: none
+    border: 1px solid $c-border

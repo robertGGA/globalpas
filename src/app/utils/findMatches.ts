@@ -6,6 +6,10 @@ export function filterArrayByFields(array: BookModel[], filter: IFilters): BookM
   return array.filter(obj => {
     return Object.keys(filter).every(filterKeys => {
 
+      if (filterKeys === 'from' || filterKeys === 'to') {
+        return obj.pageCount >= filter['from'] && obj.pageCount <= filter['to']
+      }
+
       if (filterKeys === 'name') {
         return obj[filterKeys as keyof BookModel].toString().toLowerCase()
           .concat(obj['description'].toString().toLowerCase())

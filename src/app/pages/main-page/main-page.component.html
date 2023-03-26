@@ -9,7 +9,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Авторы</mat-label>
         <mat-select formControlName="author" multiple>
-          <mat-option *ngFor="let author of authors" [value]="author.name">{{author.name}}</mat-option>
+          <mat-option  *ngFor="let author of authors" [value]="author.name">{{author.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -29,6 +29,19 @@
         </mat-select>
       </mat-form-field>
 
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>От</mat-label>
+          <input formControlName="from" type="number" min="0" max="10000" minlength="1" maxlength="5" matInput
+                 pattern="^[1-9][0-9]{4,}$" placeholder="0" value="0">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>До</mat-label>
+          <input formControlName="to" min="10" max="10000" type="number" minlength="1" maxlength="5" matInput
+                 pattern="^[1-9][0-9]{4,}$" placeholder="10000" value="10000">
+        </mat-form-field>
+      </div>
+
       <div class="button__container">
         <button (click)="openBookModal()">
           Добавить книгу
@@ -37,6 +50,7 @@
           Добавить автора
         </button>
       </div>
+
 
     </gp-side-bar>
 

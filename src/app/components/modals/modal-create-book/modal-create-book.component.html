@@ -12,9 +12,9 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field>
     <mat-label>Описание</mat-label>
-    <input formControlName="name" matInput>
+    <textarea formControlName="name" matInput></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -37,7 +37,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button (click)="submit()">
+  <button class="button-submit" [disabled]="form.invalid" (click)="submit()">
     Сохранить
   </button>
 </gp-modal-body>
