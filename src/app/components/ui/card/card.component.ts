@@ -13,8 +13,7 @@ export class CardComponent {
 
   @Input() book!: BookModel
 
-  constructor(public dialog: MatDialog) {
-  }
+  constructor(public dialog: MatDialog) {}
 
   openModal() {
     this.dialog.open(ModalBookComponent,

@@ -73,7 +73,7 @@ export class MainPageComponent implements OnInit {
     })
   }
 
-  private initForms() {
+  initForms() {
     this.authorService.getGenres().pipe(takeUntil(this.destroy$)).subscribe(value => {
       this.genres = value;
       this.genres.unshift({"genre": 'Очистить'});

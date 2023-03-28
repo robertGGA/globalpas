@@ -37,8 +37,6 @@ export class ModalCreateBookComponent {
     });
     this.authors$ =  this.authorService.getAuthors();
 
-    // this.form.hasError()
-
     this.initForms();
   }
 

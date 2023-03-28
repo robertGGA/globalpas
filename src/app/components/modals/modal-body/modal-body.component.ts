@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'gp-modal-body',
@@ -6,11 +6,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   styleUrls: ['./modal-body.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalBodyComponent implements OnInit {
+export class ModalBodyComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
